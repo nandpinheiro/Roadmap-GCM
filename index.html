@@ -1937,6 +1937,271 @@ body {
     font-size: 0.8rem;
   }
 }
+
+/* Conteúdos Section */
+.conteudos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.conteudo-fase {
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 1.5rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.conteudo-fase:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  background: rgba(30, 41, 59, 0.7);
+}
+
+.conteudo-fase-header {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.conteudo-fase-numero {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+}
+
+.conteudo-fase-numero.p1 {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.conteudo-fase-numero.p2 {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+.conteudo-fase-numero.p3 {
+  background: linear-gradient(135deg, var(--success), #34d399);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.conteudo-fase-numero.p4 {
+  background: linear-gradient(135deg, var(--warning), #fbbf24);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.conteudo-fase-numero.p5 {
+  background: linear-gradient(135deg, #a855f7, #d8b4fe);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.conteudo-fase-info {
+  flex: 1;
+}
+
+.conteudo-fase-titulo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.conteudo-fase-periodo {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.conteudo-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.conteudo-item {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.conteudo-item:last-child {
+  border-bottom: none;
+}
+
+.conteudo-item:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.conteudo-item-header {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.conteudo-item-checkbox {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--border-light);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.conteudo-item:hover .conteudo-item-checkbox {
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.conteudo-item-checkbox.checked {
+  background: linear-gradient(135deg, var(--success), #34d399);
+  border-color: var(--success);
+}
+
+.conteudo-item-checkbox.checked::after {
+  content: '✓';
+  color: white;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.conteudo-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.conteudo-item-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.conteudo-item-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.conteudo-item-expand {
+  display: none;
+  padding: 1.5rem;
+  background: rgba(99, 102, 241, 0.08);
+  border-top: 1px solid var(--border);
+  gap: 1.5rem;
+  animation: slideDown 0.3s ease;
+}
+
+.conteudo-item-expand.active {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
+.conteudo-expand-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.conteudo-expand-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.conteudo-expand-input {
+  padding: 0.75rem 1rem;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.conteudo-expand-input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  background: rgba(30, 41, 59, 0.95);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
+}
+
+.conteudo-expand-textarea {
+  padding: 0.75rem 1rem;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  resize: vertical;
+  min-height: 100px;
+  transition: all 0.3s ease;
+}
+
+.conteudo-expand-textarea:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  background: rgba(30, 41, 59, 0.95);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
+}
+
+@media (max-width: 768px) {
+  .conteudo-fase-header {
+    padding: 1.25rem;
+  }
+
+  .conteudo-fase-titulo {
+    font-size: 1.05rem;
+  }
+
+  .conteudo-fase-periodo {
+    font-size: 0.8rem;
+  }
+
+  .conteudo-item {
+    padding: 0.75rem 1rem;
+  }
+
+  .conteudo-item-expand.active {
+    grid-template-columns: 1fr;
+  }
+
+  .conteudo-expand-input,
+  .conteudo-expand-textarea {
+    font-size: 0.9rem;
+  }
+}
 </style>
 
 <div class="root">
@@ -1977,6 +2242,7 @@ body {
   <nav class="nav" role="tablist">
     <button class="nav-btn on" onclick="go('daily',this)">📋 Checklist Hoje</button>
     <button class="nav-btn" onclick="go('fases',this)">Fases</button>
+    <button class="nav-btn" onclick="go('conteudos',this)">📚 Conteúdos</button>
     <button class="nav-btn" onclick="go('semana',this)">Semana típica</button>
     <button class="nav-btn" onclick="go('legislacao',this)">Legislação</button>
     <button class="nav-btn" onclick="go('prioridades',this)">Prioridades</button>
@@ -2079,6 +2345,10 @@ body {
         </div>
       </div>
     </div>
+  </div>
+
+  <div id="p-conteudos" class="panel">
+    <div class="conteudos-container" id="conteudosContainer"></div>
   </div>
 
   <div id="p-semana" class="panel">
@@ -2525,7 +2795,147 @@ function updateProgress() {
   document.getElementById('progressPercentage').textContent = `${percentage}%`;
 }
 
+// Conteúdos System
+const conteudosFases = [
+  {
+    numero: 1,
+    titulo: 'Base constitucional',
+    periodo: 'Semanas 1–2 · 06/05 a 18/05',
+    cor: 'p1',
+    conteudos: [
+      { id: 'c1-1', titulo: 'CF/88 — arts. 1º ao 5º', desc: 'Princípios e direitos fundamentais' },
+      { id: 'c1-2', titulo: 'CF/88 — arts. 37 e 144', desc: 'LIMPE e segurança pública' },
+      { id: 'c1-3', titulo: 'Estatuto GCM — Lei Federal nº 13.022/2014', desc: 'Leitura integral' },
+      { id: 'c1-4', titulo: 'Noções de hierarquia e disciplina', desc: 'Conceitos fundamentais' }
+    ]
+  },
+  {
+    numero: 2,
+    titulo: 'Direito Penal',
+    periodo: 'Semanas 3–4 · 19/05 a 01/06',
+    cor: 'p2',
+    conteudos: [
+      { id: 'c2-1', titulo: 'Arts. 14–18: crime consumado, tentado, dolo e culpa', desc: 'Elementos básicos do crime' },
+      { id: 'c2-2', titulo: 'Arts. 23–25: legítima defesa, estado de necessidade', desc: 'Causas de exclusão de ilicitude' },
+      { id: 'c2-3', titulo: 'Arts. 155–180: furto, roubo, extorsão, receptação', desc: 'Crimes contra o patrimônio' },
+      { id: 'c2-4', titulo: 'Arts. 312–327: peculato, corrupção, prevaricação', desc: 'Crimes funcionários' }
+    ]
+  },
+  {
+    numero: 3,
+    titulo: 'Estatutos sociais',
+    periodo: 'Semanas 5–6 · 02/06 a 15/06',
+    cor: 'p3',
+    conteudos: [
+      { id: 'c3-1', titulo: 'ECA — arts. 1–6, 103–109, 131–137 e 225–244B', desc: 'Estatuto da Criança e Adolescente' },
+      { id: 'c3-2', titulo: 'Estatuto do Idoso — Lei nº 10.741/2003', desc: 'Noções gerais' },
+      { id: 'c3-3', titulo: 'Lei Maria da Penha — arts. 1º ao 8º', desc: 'Violência doméstica' },
+      { id: 'c3-4', titulo: 'Lei de Abuso de Autoridade — Lei nº 13.869/2019', desc: 'Crimes de autoridade' }
+    ]
+  },
+  {
+    numero: 4,
+    titulo: 'Direito Administrativo e trânsito',
+    periodo: 'Semanas 7–8 · 16/06 a 29/06',
+    cor: 'p4',
+    conteudos: [
+      { id: 'c4-1', titulo: 'Administração Pública: princípios, poderes, atos', desc: 'Conceitos fundamentais' },
+      { id: 'c4-2', titulo: 'CTB — Lei nº 9.503/1997', desc: 'Noções de fiscalização' },
+      { id: 'c4-3', titulo: 'Lei Orgânica do Município de São José de Ribamar', desc: 'Legislação municipal' },
+      { id: 'c4-4', titulo: 'Consolidação dos temas anteriores', desc: 'Resolução de questões' }
+    ]
+  },
+  {
+    numero: 5,
+    titulo: 'Revisão geral e simulados',
+    periodo: 'Semanas 9–11 · 30/06 a 26/07',
+    cor: 'p5',
+    conteudos: [
+      { id: 'c5-1', titulo: 'Revisão de toda a legislação', desc: 'Através dos fichamentos' },
+      { id: 'c5-2', titulo: 'Simulados cronometrados diários', desc: '20–30 questões' },
+      { id: 'c5-3', titulo: 'Análise e correção dos erros', desc: 'Identificar padrões' },
+      { id: 'c5-4', titulo: 'Descanso estratégico na véspera', desc: 'Preparação final' }
+    ]
+  }
+];
+
+function initializeConteudos() {
+  const container = document.getElementById('conteudosContainer');
+  container.innerHTML = conteudosFases.map(fase => `
+    <div class="conteudo-fase">
+      <div class="conteudo-fase-header">
+        <div class="conteudo-fase-numero ${fase.cor}">${fase.numero}</div>
+        <div class="conteudo-fase-info">
+          <div class="conteudo-fase-titulo">${fase.titulo}</div>
+          <div class="conteudo-fase-periodo">${fase.periodo}</div>
+        </div>
+      </div>
+      <div class="conteudo-items">
+        ${fase.conteudos.map(item => {
+          const storageKey = `conteudo-${item.id}`;
+          const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+          return `
+            <div class="conteudo-item" data-conteudo-id="${item.id}">
+              <div class="conteudo-item-header" onclick="toggleConteudo('${item.id}')">
+                <div class="conteudo-item-checkbox ${saved.checked ? 'checked' : ''}" onclick="event.stopPropagation(); toggleConteudoCheckbox('${item.id}')"></div>
+                <div class="conteudo-item-content">
+                  <div class="conteudo-item-title">${item.titulo}</div>
+                  <div class="conteudo-item-desc">${item.desc}</div>
+                </div>
+              </div>
+              <div class="conteudo-item-expand ${saved.expanded ? 'active' : ''}" id="expand-${item.id}">
+                <div class="conteudo-expand-field">
+                  <label class="conteudo-expand-label">📅 Data de Finalização</label>
+                  <input type="date" class="conteudo-expand-input" id="date-${item.id}" value="${saved.data || ''}" onchange="saveConteudo('${item.id}')">
+                </div>
+                <div class="conteudo-expand-field">
+                  <label class="conteudo-expand-label">📝 Observação</label>
+                  <textarea class="conteudo-expand-textarea" id="obs-${item.id}" placeholder="Adicione suas anotações aqui..." onchange="saveConteudo('${item.id}')">${saved.observacao || ''}</textarea>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleConteudo(contentId) {
+  const expandEl = document.getElementById(`expand-${contentId}`);
+  expandEl.classList.toggle('active');
+  
+  const storageKey = `conteudo-${contentId}`;
+  const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  saved.expanded = !saved.expanded;
+  localStorage.setItem(storageKey, JSON.stringify(saved));
+}
+
+function toggleConteudoCheckbox(contentId) {
+  const itemEl = document.querySelector(`[data-conteudo-id="${contentId}"]`);
+  const checkboxEl = itemEl.querySelector('.conteudo-item-checkbox');
+  
+  checkboxEl.classList.toggle('checked');
+  
+  const storageKey = `conteudo-${contentId}`;
+  const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  saved.checked = !saved.checked;
+  localStorage.setItem(storageKey, JSON.stringify(saved));
+}
+
+function saveConteudo(contentId) {
+  const dataInput = document.getElementById(`date-${contentId}`);
+  const obsInput = document.getElementById(`obs-${contentId}`);
+  
+  const storageKey = `conteudo-${contentId}`;
+  const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  saved.data = dataInput.value;
+  saved.observacao = obsInput.value;
+  localStorage.setItem(storageKey, JSON.stringify(saved));
+}
+
 // Initialize on page load
+initializeConteudos();
 initializeDailyChecklist();
 </script>
 </body>
