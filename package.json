@@ -1,0 +1,23 @@
+{
+  "name": "roadmap-gcm-github-pages",
+  "version": "2.0.0",
+  "description": "Aplicação de planejamento de estudo para concurso GCM - Sincronização em nuvem com Firebase",
+  "scripts": {
+    "start": "echo 'Abra o GitHub Pages no navegador: https://nandpinheiro.github.io/Roadmap-GCM'",
+    "deploy": "git push origin main"
+  },
+  "keywords": [
+    "guarda-civil",
+    "estudos",
+    "roadmap",
+    "firebase",
+    "github-pages"
+  ],
+  "author": "Nand Pinheiro",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nandpinheiro/Roadmap-GCM"
+  }
+}
+
