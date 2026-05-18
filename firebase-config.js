@@ -13,13 +13,13 @@
 
 // 🔑 CONFIGURE SUAS CREDENCIAIS DO FIREBASE AQUI
 const firebaseConfig = {
-  apiKey: "AIzaSyDKd_R4-p9pZ5k7x8z0uJ6m3n4o5pQ6rS7t",           // ← Cole aqui
-  authDomain: "roadmap-gcm.firebaseapp.com",                      // ← Cole aqui
-  databaseURL: "https://roadmap-gcm-default-rtdb.firebaseio.com", // ← Cole aqui
-  projectId: "roadmap-gcm",                                       // ← Cole aqui
-  storageBucket: "roadmap-gcm.appspot.com",                       // ← Cole aqui
-  messagingSenderId: "123456789",                                 // ← Cole aqui
-  appId: "1:123456789:web:abcdefghijklmnop"                      // ← Cole aqui
+  apiKey: "AIzaSyBlNbIr7bmPpGFtTgwNm8ep28jptnUqoT0",
+  authDomain: "roadmap-gcm-3a075.firebaseapp.com",
+  databaseURL: "https://roadmap-gcm-3a075-default-rtdb.firebaseio.com",
+  projectId: "roadmap-gcm-3a075",
+  storageBucket: "roadmap-gcm-3a075.firebasestorage.app",
+  messagingSenderId: "796723843950",
+  appId: "1:796723843950:web:9c8773cb5ec5ca61c5277f"
 };
 
 // Inicializar Firebase
