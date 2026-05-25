@@ -32,6 +32,25 @@
   --border-light: #64748b;
 }
 
+body.light-mode {
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --accent: #ec4899;
+  --accent-light: #f472b6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --background: #f8f9fa;
+  --surface: #ffffff;
+  --surface-light: #f3f4f6;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  --border: #e5e7eb;
+  --border-light: #d1d5db;
+}
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -63,6 +82,46 @@ body {
   border-radius: 1.5rem;
   border: 1px solid rgba(99, 102, 241, 0.2);
   backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 99px;
+  padding: 0.5rem;
+  display: flex;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(99, 102, 241, 0.3);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.theme-toggle-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn.active {
+  background: rgba(99, 102, 241, 0.3);
+  color: var(--primary-light);
 }
 
 .header-eyebrow{
@@ -1136,6 +1195,17 @@ body {
     border-radius: 1rem;
   }
 
+  .theme-toggle {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .theme-toggle-btn {
+    width: 1.85rem;
+    height: 1.85rem;
+    font-size: 0.9rem;
+  }
+
   .header-eyebrow {
     font-size: 0.7rem;
     margin-bottom: 0.75rem;
@@ -1519,6 +1589,17 @@ body {
   .header {
     padding: 1rem;
     margin-bottom: 1.5rem;
+  }
+
+  .theme-toggle {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .theme-toggle-btn {
+    width: 1.65rem;
+    height: 1.65rem;
+    font-size: 0.85rem;
   }
 
   .header-eyebrow {
@@ -2022,7 +2103,7 @@ body {
 .conteudo-fase-periodo {
   font-size: 0.85rem;
   color: var(--text-tertiary);
-  display: none;
+  display: block;
 }
 
 .conteudo-phase-progress {
@@ -2421,14 +2502,18 @@ body {
   </div>
   
   <div class="header">
+    <div class="theme-toggle">
+      <button class="theme-toggle-btn active" id="darkModeBtn" onclick="setTheme('dark')" title="Modo noturno">🌙</button>
+      <button class="theme-toggle-btn" id="lightModeBtn" onclick="setTheme('light')" title="Modo claro">☀️</button>
+    </div>
     <div class="header-eyebrow">Concurso Público • Edital nº 003/2026</div>
     <div class="header-title">Guarda Civil Municipal — São José de Ribamar/MA</div>
     <div class="header-sub">Plano de estudos personalizado para rotina 6×1 com faculdade noturna</div>
     <div class="header-meta">
       <div class="meta-pill"><i class="ti ti-calendar-event" aria-hidden="true"></i> Prova: 26/07/2026</div>
-      <div class="meta-pill"><i class="ti ti-clock" aria-hidden="true"></i> 11 semanas disponíveis</div>
+      <div class="meta-pill"><i class="ti ti-clock" aria-hidden="true"></i> <span id="weekCounter">11</span> semanas disponíveis</div>
       <div class="meta-pill"><i class="ti ti-target" aria-hidden="true"></i> Foco: legislação específica</div>
-      <div class="meta-pill"><i class="ti ti-school" aria-hidden="true"></i> ~85h de estudo no período</div>
+      <div class="meta-pill"><i class="ti ti-school" aria-hidden="true"></i> <span id="hoursCounter">~85h</span> de estudo no período</div>
     </div>
 
     <div class="countdown">
@@ -2702,8 +2787,8 @@ body {
 
   <div id="p-prioridades" class="panel">
     <div class="stats-row">
-      <div class="stat-card"><div class="stat-label">Semanas restantes</div><div class="stat-val">11</div><div class="stat-sub">até 26/07/2026</div></div>
-      <div class="stat-card"><div class="stat-label">Horas úteis estimadas</div><div class="stat-val">~85h</div><div class="stat-sub">trabalho + folga</div></div>
+      <div class="stat-card"><div class="stat-label">Semanas restantes</div><div class="stat-val" id="statsWeeks">11</div><div class="stat-sub">até 26/07/2026</div></div>
+      <div class="stat-card"><div class="stat-label">Horas úteis estimadas</div><div class="stat-val" id="statsHours">~85h</div><div class="stat-sub">trabalho + folga</div></div>
       <div class="stat-card"><div class="stat-label">Leis para dominar</div><div class="stat-val">10</div><div class="stat-sub">do edital</div></div>
       <div class="stat-card"><div class="stat-label">Questões por semana</div><div class="stat-val">50+</div><div class="stat-sub">mínimo recomendado</div></div>
     </div>
@@ -2785,6 +2870,70 @@ function go(id, btn) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('on'));
   document.getElementById('p-' + id).classList.add('on');
   btn.classList.add('on');
+}
+
+// Theme Toggle
+function setTheme(theme) {
+  const body = document.body;
+  const darkBtn = document.getElementById('darkModeBtn');
+  const lightBtn = document.getElementById('lightModeBtn');
+  
+  if (theme === 'light') {
+    body.classList.add('light-mode');
+    localStorage.setItem('theme', 'light');
+    darkBtn.classList.remove('active');
+    lightBtn.classList.add('active');
+  } else {
+    body.classList.remove('light-mode');
+    localStorage.setItem('theme', 'dark');
+    darkBtn.classList.add('active');
+    lightBtn.classList.remove('active');
+  }
+}
+
+function initializeTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  setTheme(savedTheme);
+}
+
+// Dynamic Calculations
+function calculateWeeksRemaining() {
+  const today = new Date();
+  const provaDate = new Date('2026-07-26');
+  
+  // Limpar horas para comparar apenas datas
+  today.setHours(0, 0, 0, 0);
+  provaDate.setHours(0, 0, 0, 0);
+  
+  // Calcular semanas (considerando que cada semana tem 7 dias)
+  const timeDiff = provaDate - today;
+  const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  const weeksRemaining = Math.ceil(daysDiff / 7);
+  
+  return Math.max(0, weeksRemaining);
+}
+
+function calculateHoursRemaining() {
+  const weeksRemaining = calculateWeeksRemaining();
+  
+  // Cálculo: 1h30 por dia útil (6 dias) + 4h na folga = ~13h por semana
+  const hoursPerWeek = 13;
+  const totalHours = Math.round(weeksRemaining * hoursPerWeek);
+  
+  return totalHours;
+}
+
+function updateDynamicValues() {
+  const weeks = calculateWeeksRemaining();
+  const hours = calculateHoursRemaining();
+  
+  // Atualizar header
+  document.getElementById('weekCounter').textContent = weeks;
+  document.getElementById('hoursCounter').textContent = '~' + hours + 'h';
+  
+  // Atualizar stats
+  document.getElementById('statsWeeks').textContent = weeks;
+  document.getElementById('statsHours').textContent = '~' + hours + 'h';
 }
 
 // Countdown Timer
@@ -3014,8 +3163,8 @@ function updateProgress() {
 const conteudosFases = [
   {
     numero: 1,
-    titulo: 'Base constitucional',
-    periodo: 'Semanas 1–2 · 06/05 a 18/05',
+    titulo: 'Base Constitucional',
+    periodo: 'Semanas 1–2',
     cor: 'p1',
     conteudos: [
       { id: 'c1-1', titulo: 'CF/88 — arts. 1º ao 5º', desc: 'Princípios e direitos fundamentais' },
@@ -3026,20 +3175,20 @@ const conteudosFases = [
   },
   {
     numero: 2,
-    titulo: 'Direito Penal',
-    periodo: 'Semanas 3–4 · 19/05 a 01/06',
+    titulo: 'Direito Administrativo e Leis Locais',
+    periodo: 'Semanas 3–4',
     cor: 'p2',
     conteudos: [
-      { id: 'c2-1', titulo: 'Arts. 14–18: crime consumado, tentado, dolo e culpa', desc: 'Elementos básicos do crime' },
-      { id: 'c2-2', titulo: 'Arts. 23–25: legítima defesa, estado de necessidade', desc: 'Causas de exclusão de ilicitude' },
-      { id: 'c2-3', titulo: 'Arts. 155–180: furto, roubo, extorsão, receptação', desc: 'Crimes contra o patrimônio' },
-      { id: 'c2-4', titulo: 'Arts. 312–327: peculato, corrupção, prevaricação', desc: 'Crimes funcionários' }
+      { id: 'c2-1', titulo: 'Administração Pública: princípios, poderes, atos', desc: 'Conceitos fundamentais' },
+      { id: 'c2-2', titulo: 'CTB — Lei nº 9.503/1997', desc: 'Noções de fiscalização' },
+      { id: 'c2-3', titulo: 'Lei Orgânica do Município de São José de Ribamar', desc: 'Legislação municipal' },
+      { id: 'c2-4', titulo: 'Consolidação dos temas anteriores', desc: 'Resolução de questões' }
     ]
   },
   {
     numero: 3,
-    titulo: 'Estatutos sociais',
-    periodo: 'Semanas 5–6 · 02/06 a 15/06',
+    titulo: 'Estatutos Sociais e Abuso de Autoridade',
+    periodo: 'Semanas 5–6',
     cor: 'p3',
     conteudos: [
       { id: 'c3-1', titulo: 'ECA — arts. 1–6, 103–109, 131–137 e 225–244B', desc: 'Estatuto da Criança e Adolescente' },
@@ -3050,20 +3199,20 @@ const conteudosFases = [
   },
   {
     numero: 4,
-    titulo: 'Direito Administrativo e trânsito',
-    periodo: 'Semanas 7–8 · 16/06 a 29/06',
+    titulo: 'Direito Penal',
+    periodo: 'Semanas 7–8',
     cor: 'p4',
     conteudos: [
-      { id: 'c4-1', titulo: 'Administração Pública: princípios, poderes, atos', desc: 'Conceitos fundamentais' },
-      { id: 'c4-2', titulo: 'CTB — Lei nº 9.503/1997', desc: 'Noções de fiscalização' },
-      { id: 'c4-3', titulo: 'Lei Orgânica do Município de São José de Ribamar', desc: 'Legislação municipal' },
-      { id: 'c4-4', titulo: 'Consolidação dos temas anteriores', desc: 'Resolução de questões' }
+      { id: 'c4-1', titulo: 'Arts. 14–18: crime consumado, tentado, dolo e culpa', desc: 'Elementos básicos do crime' },
+      { id: 'c4-2', titulo: 'Arts. 23–25: legítima defesa, estado de necessidade', desc: 'Causas de exclusão de ilicitude' },
+      { id: 'c4-3', titulo: 'Arts. 155–180: furto, roubo, extorsão, receptação', desc: 'Crimes contra o patrimônio' },
+      { id: 'c4-4', titulo: 'Arts. 312–327: peculato, corrupção, prevaricação', desc: 'Crimes funcionários' }
     ]
   },
   {
     numero: 5,
-    titulo: 'Revisão geral e simulados',
-    periodo: 'Semanas 9–11 · 30/06 a 26/07',
+    titulo: 'Revisão Geral e Simulados Finais',
+    periodo: 'Semanas 9–11',
     cor: 'p5',
     conteudos: [
       { id: 'c5-1', titulo: 'Revisão de toda a legislação', desc: 'Através dos fichamentos' },
@@ -3359,8 +3508,10 @@ async function submitPhaseData(faseIndex) {
 }
 
 // Initialize on page load
+initializeTheme();
 initializeConteudos();
 initializeDailyChecklist();
+updateDynamicValues();
 </script>
 
 <!-- Firebase Scripts -->
