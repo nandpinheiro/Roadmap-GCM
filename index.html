@@ -32,6 +32,25 @@
   --border-light: #64748b;
 }
 
+body.light-mode {
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --accent: #ec4899;
+  --accent-light: #f472b6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --background: #f8f9fa;
+  --surface: #ffffff;
+  --surface-light: #f3f4f6;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  --border: #e5e7eb;
+  --border-light: #d1d5db;
+}
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -63,6 +82,46 @@ body {
   border-radius: 1.5rem;
   border: 1px solid rgba(99, 102, 241, 0.2);
   backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 99px;
+  padding: 0.5rem;
+  display: flex;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(99, 102, 241, 0.3);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.theme-toggle-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn.active {
+  background: rgba(99, 102, 241, 0.3);
+  color: var(--primary-light);
 }
 
 .header-eyebrow{
@@ -308,6 +367,7 @@ body {
   background: rgba(99, 102, 241, 0.1);
   padding: 0.25rem 0.75rem;
   border-radius: 99px;
+  display: none;
 }
 
 .tl-topics{display:flex;flex-direction:column;gap: 0.75rem}
@@ -1135,6 +1195,17 @@ body {
     border-radius: 1rem;
   }
 
+  .theme-toggle {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .theme-toggle-btn {
+    width: 1.85rem;
+    height: 1.85rem;
+    font-size: 0.9rem;
+  }
+
   .header-eyebrow {
     font-size: 0.7rem;
     margin-bottom: 0.75rem;
@@ -1518,6 +1589,17 @@ body {
   .header {
     padding: 1rem;
     margin-bottom: 1.5rem;
+  }
+
+  .theme-toggle {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .theme-toggle-btn {
+    width: 1.65rem;
+    height: 1.65rem;
+    font-size: 0.85rem;
   }
 
   .header-eyebrow {
@@ -2021,6 +2103,215 @@ body {
 .conteudo-fase-periodo {
   font-size: 0.85rem;
   color: var(--text-tertiary);
+  display: block;
+}
+
+.conteudo-phase-progress {
+  padding: 1.5rem;
+  background: rgba(99, 102, 241, 0.05);
+  border-top: 1px solid var(--border);
+}
+
+.progress-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-title-value {
+  color: var(--primary-light);
+}
+
+.phase-progress-bar {
+  height: 0.6rem;
+  background: var(--surface-light);
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.phase-progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--primary-light), var(--primary));
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+  transition: width 0.5s ease;
+}
+
+.submit-section {
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 1.5rem;
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.submit-section-inline {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 1.5rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.submit-info {
+  flex: 1;
+}
+
+.submit-info-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.submit-info-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.submit-button {
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  border: none;
+  border-radius: 0.75rem;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  white-space: nowrap;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.submit-button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.submit-button-inline {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  border: none;
+  border-radius: 0.65rem;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.submit-button-inline:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+.submit-button-inline:active {
+  transform: translateY(0);
+}
+
+.submit-button-inline.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.success-message {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: linear-gradient(135deg, var(--success), #34d399);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+  z-index: 1000;
+  animation: slideInRight 0.3s ease;
+  display: none;
+}
+
+.success-message.show {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .root {
+    padding: 1.5rem 1rem;
+  }
+
+  .submit-section {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
+
+  .submit-info-title {
+    font-size: 1rem;
+  }
+
+  .submit-info-desc {
+    font-size: 0.85rem;
+  }
+
+  .success-message {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .conteudo-phase-progress {
+    padding: 1rem;
+  }
+
+  .progress-title {
+    font-size: 0.8rem;
+  }
+
+  .phase-progress-bar {
+    height: 0.5rem;
+  }
 }
 
 .conteudo-items {
@@ -2205,15 +2496,24 @@ body {
 </style>
 
 <div class="root">
+  <div class="success-message" id="successMessage">
+    <i class="ti ti-check-circle" aria-hidden="true"></i>
+    <span id="successText">Dados salvos com sucesso!</span>
+  </div>
+  
   <div class="header">
+    <div class="theme-toggle">
+      <button class="theme-toggle-btn active" id="darkModeBtn" onclick="setTheme('dark')" title="Modo noturno">🌙</button>
+      <button class="theme-toggle-btn" id="lightModeBtn" onclick="setTheme('light')" title="Modo claro">☀️</button>
+    </div>
     <div class="header-eyebrow">Concurso Público • Edital nº 003/2026</div>
     <div class="header-title">Guarda Civil Municipal — São José de Ribamar/MA</div>
     <div class="header-sub">Plano de estudos personalizado para rotina 6×1 com faculdade noturna</div>
     <div class="header-meta">
       <div class="meta-pill"><i class="ti ti-calendar-event" aria-hidden="true"></i> Prova: 26/07/2026</div>
-      <div class="meta-pill"><i class="ti ti-clock" aria-hidden="true"></i> 11 semanas disponíveis</div>
+      <div class="meta-pill"><i class="ti ti-clock" aria-hidden="true"></i> <span id="weekCounter">11</span> semanas disponíveis</div>
       <div class="meta-pill"><i class="ti ti-target" aria-hidden="true"></i> Foco: legislação específica</div>
-      <div class="meta-pill"><i class="ti ti-school" aria-hidden="true"></i> ~85h de estudo no período</div>
+      <div class="meta-pill"><i class="ti ti-school" aria-hidden="true"></i> <span id="hoursCounter">~85h</span> de estudo no período</div>
     </div>
 
     <div class="countdown">
@@ -2487,8 +2787,8 @@ body {
 
   <div id="p-prioridades" class="panel">
     <div class="stats-row">
-      <div class="stat-card"><div class="stat-label">Semanas restantes</div><div class="stat-val">11</div><div class="stat-sub">até 26/07/2026</div></div>
-      <div class="stat-card"><div class="stat-label">Horas úteis estimadas</div><div class="stat-val">~85h</div><div class="stat-sub">trabalho + folga</div></div>
+      <div class="stat-card"><div class="stat-label">Semanas restantes</div><div class="stat-val" id="statsWeeks">11</div><div class="stat-sub">até 26/07/2026</div></div>
+      <div class="stat-card"><div class="stat-label">Horas úteis estimadas</div><div class="stat-val" id="statsHours">~85h</div><div class="stat-sub">trabalho + folga</div></div>
       <div class="stat-card"><div class="stat-label">Leis para dominar</div><div class="stat-val">10</div><div class="stat-sub">do edital</div></div>
       <div class="stat-card"><div class="stat-label">Questões por semana</div><div class="stat-val">50+</div><div class="stat-sub">mínimo recomendado</div></div>
     </div>
@@ -2570,6 +2870,70 @@ function go(id, btn) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('on'));
   document.getElementById('p-' + id).classList.add('on');
   btn.classList.add('on');
+}
+
+// Theme Toggle
+function setTheme(theme) {
+  const body = document.body;
+  const darkBtn = document.getElementById('darkModeBtn');
+  const lightBtn = document.getElementById('lightModeBtn');
+  
+  if (theme === 'light') {
+    body.classList.add('light-mode');
+    localStorage.setItem('theme', 'light');
+    darkBtn.classList.remove('active');
+    lightBtn.classList.add('active');
+  } else {
+    body.classList.remove('light-mode');
+    localStorage.setItem('theme', 'dark');
+    darkBtn.classList.add('active');
+    lightBtn.classList.remove('active');
+  }
+}
+
+function initializeTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  setTheme(savedTheme);
+}
+
+// Dynamic Calculations
+function calculateWeeksRemaining() {
+  const today = new Date();
+  const provaDate = new Date('2026-07-26');
+  
+  // Limpar horas para comparar apenas datas
+  today.setHours(0, 0, 0, 0);
+  provaDate.setHours(0, 0, 0, 0);
+  
+  // Calcular semanas (considerando que cada semana tem 7 dias)
+  const timeDiff = provaDate - today;
+  const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  const weeksRemaining = Math.ceil(daysDiff / 7);
+  
+  return Math.max(0, weeksRemaining);
+}
+
+function calculateHoursRemaining() {
+  const weeksRemaining = calculateWeeksRemaining();
+  
+  // Cálculo: 1h30 por dia útil (6 dias) + 4h na folga = ~13h por semana
+  const hoursPerWeek = 13;
+  const totalHours = Math.round(weeksRemaining * hoursPerWeek);
+  
+  return totalHours;
+}
+
+function updateDynamicValues() {
+  const weeks = calculateWeeksRemaining();
+  const hours = calculateHoursRemaining();
+  
+  // Atualizar header
+  document.getElementById('weekCounter').textContent = weeks;
+  document.getElementById('hoursCounter').textContent = '~' + hours + 'h';
+  
+  // Atualizar stats
+  document.getElementById('statsWeeks').textContent = weeks;
+  document.getElementById('statsHours').textContent = '~' + hours + 'h';
 }
 
 // Countdown Timer
@@ -2799,8 +3163,8 @@ function updateProgress() {
 const conteudosFases = [
   {
     numero: 1,
-    titulo: 'Base constitucional',
-    periodo: 'Semanas 1–2 · 06/05 a 18/05',
+    titulo: 'Base Constitucional',
+    periodo: 'Semanas 1–2',
     cor: 'p1',
     conteudos: [
       { id: 'c1-1', titulo: 'CF/88 — arts. 1º ao 5º', desc: 'Princípios e direitos fundamentais' },
@@ -2811,20 +3175,20 @@ const conteudosFases = [
   },
   {
     numero: 2,
-    titulo: 'Direito Penal',
-    periodo: 'Semanas 3–4 · 19/05 a 01/06',
+    titulo: 'Direito Administrativo e Leis Locais',
+    periodo: 'Semanas 3–4',
     cor: 'p2',
     conteudos: [
-      { id: 'c2-1', titulo: 'Arts. 14–18: crime consumado, tentado, dolo e culpa', desc: 'Elementos básicos do crime' },
-      { id: 'c2-2', titulo: 'Arts. 23–25: legítima defesa, estado de necessidade', desc: 'Causas de exclusão de ilicitude' },
-      { id: 'c2-3', titulo: 'Arts. 155–180: furto, roubo, extorsão, receptação', desc: 'Crimes contra o patrimônio' },
-      { id: 'c2-4', titulo: 'Arts. 312–327: peculato, corrupção, prevaricação', desc: 'Crimes funcionários' }
+      { id: 'c2-1', titulo: 'Administração Pública: princípios, poderes, atos', desc: 'Conceitos fundamentais' },
+      { id: 'c2-2', titulo: 'CTB — Lei nº 9.503/1997', desc: 'Noções de fiscalização' },
+      { id: 'c2-3', titulo: 'Lei Orgânica do Município de São José de Ribamar', desc: 'Legislação municipal' },
+      { id: 'c2-4', titulo: 'Consolidação dos temas anteriores', desc: 'Resolução de questões' }
     ]
   },
   {
     numero: 3,
-    titulo: 'Estatutos sociais',
-    periodo: 'Semanas 5–6 · 02/06 a 15/06',
+    titulo: 'Estatutos Sociais e Abuso de Autoridade',
+    periodo: 'Semanas 5–6',
     cor: 'p3',
     conteudos: [
       { id: 'c3-1', titulo: 'ECA — arts. 1–6, 103–109, 131–137 e 225–244B', desc: 'Estatuto da Criança e Adolescente' },
@@ -2835,20 +3199,20 @@ const conteudosFases = [
   },
   {
     numero: 4,
-    titulo: 'Direito Administrativo e trânsito',
-    periodo: 'Semanas 7–8 · 16/06 a 29/06',
+    titulo: 'Direito Penal',
+    periodo: 'Semanas 7–8',
     cor: 'p4',
     conteudos: [
-      { id: 'c4-1', titulo: 'Administração Pública: princípios, poderes, atos', desc: 'Conceitos fundamentais' },
-      { id: 'c4-2', titulo: 'CTB — Lei nº 9.503/1997', desc: 'Noções de fiscalização' },
-      { id: 'c4-3', titulo: 'Lei Orgânica do Município de São José de Ribamar', desc: 'Legislação municipal' },
-      { id: 'c4-4', titulo: 'Consolidação dos temas anteriores', desc: 'Resolução de questões' }
+      { id: 'c4-1', titulo: 'Arts. 14–18: crime consumado, tentado, dolo e culpa', desc: 'Elementos básicos do crime' },
+      { id: 'c4-2', titulo: 'Arts. 23–25: legítima defesa, estado de necessidade', desc: 'Causas de exclusão de ilicitude' },
+      { id: 'c4-3', titulo: 'Arts. 155–180: furto, roubo, extorsão, receptação', desc: 'Crimes contra o patrimônio' },
+      { id: 'c4-4', titulo: 'Arts. 312–327: peculato, corrupção, prevaricação', desc: 'Crimes funcionários' }
     ]
   },
   {
     numero: 5,
-    titulo: 'Revisão geral e simulados',
-    periodo: 'Semanas 9–11 · 30/06 a 26/07',
+    titulo: 'Revisão Geral e Simulados Finais',
+    periodo: 'Semanas 9–11',
     cor: 'p5',
     conteudos: [
       { id: 'c5-1', titulo: 'Revisão de toda a legislação', desc: 'Através dos fichamentos' },
@@ -2861,7 +3225,19 @@ const conteudosFases = [
 
 function initializeConteudos() {
   const container = document.getElementById('conteudosContainer');
-  container.innerHTML = conteudosFases.map(fase => `
+  container.innerHTML = conteudosFases.map((fase, faseIndex) => {
+    const totalConteudos = fase.conteudos.length;
+    let completados = 0;
+    
+    fase.conteudos.forEach(item => {
+      const storageKey = `conteudo-${item.id}`;
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      if (saved.checked) completados++;
+    });
+    
+    const percentual = Math.round((completados / totalConteudos) * 100);
+    
+    return `
     <div class="conteudo-fase">
       <div class="conteudo-fase-header">
         <div class="conteudo-fase-numero ${fase.cor}">${fase.numero}</div>
@@ -2897,8 +3273,24 @@ function initializeConteudos() {
           `;
         }).join('')}
       </div>
+      <div class="conteudo-phase-progress">
+        <div class="progress-title">
+          <span>Progresso da fase: ${fase.titulo}</span>
+          <span class="progress-title-value">${completados}/${totalConteudos} (${percentual}%)</span>
+        </div>
+        <div class="phase-progress-bar">
+          <div class="phase-progress-fill" style="width: ${percentual}%"></div>
+        </div>
+      </div>
+      
+      <div class="submit-section-inline">
+        <button class="submit-button-inline" onclick="submitPhaseData(${faseIndex})">
+          <i class="ti ti-send" aria-hidden="true"></i> Salvar Fase ${fase.numero}
+        </button>
+      </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 
 function toggleConteudo(contentId) {
@@ -2914,13 +3306,18 @@ function toggleConteudo(contentId) {
 function toggleConteudoCheckbox(contentId) {
   const itemEl = document.querySelector(`[data-conteudo-id="${contentId}"]`);
   const checkboxEl = itemEl.querySelector('.conteudo-item-checkbox');
+  const expandEl = document.getElementById(`expand-${contentId}`);
   
   checkboxEl.classList.toggle('checked');
+  expandEl.classList.add('active');
   
   const storageKey = `conteudo-${contentId}`;
   const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
   saved.checked = !saved.checked;
+  saved.expanded = true;
   localStorage.setItem(storageKey, JSON.stringify(saved));
+  
+  updatePhaseProgress();
 }
 
 function saveConteudo(contentId) {
@@ -2932,11 +3329,195 @@ function saveConteudo(contentId) {
   saved.data = dataInput.value;
   saved.observacao = obsInput.value;
   localStorage.setItem(storageKey, JSON.stringify(saved));
+  
+  updatePhaseProgress();
+}
+
+function updatePhaseProgress() {
+  conteudosFases.forEach((fase, index) => {
+    const totalConteudos = fase.conteudos.length;
+    let completados = 0;
+    
+    fase.conteudos.forEach(item => {
+      const storageKey = `conteudo-${item.id}`;
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      if (saved.checked) completados++;
+    });
+    
+    const percentual = Math.round((completados / totalConteudos) * 100);
+    const progressFill = document.querySelectorAll('.phase-progress-fill')[index];
+    const progressLabel = document.querySelectorAll('.progress-title')[index];
+    
+    if (progressFill) {
+      progressFill.style.width = `${percentual}%`;
+    }
+    if (progressLabel) {
+      const progressValue = progressLabel.querySelector('.progress-title-value');
+      if (progressValue) {
+        progressValue.textContent = `${completados}/${totalConteudos} (${percentual}%)`;
+      }
+    }
+  });
+}
+
+function collectAllData() {
+  const allData = {
+    timestamp: new Date().toISOString(),
+    conteudos: {},
+    dailyTasks: {}
+  };
+  
+  // Coletar dados dos conteúdos
+  conteudosFases.forEach(fase => {
+    fase.conteudos.forEach(item => {
+      const storageKey = `conteudo-${item.id}`;
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      allData.conteudos[item.id] = {
+        titulo: item.titulo,
+        faseNumero: fase.numero,
+        faseTitulo: fase.titulo,
+        checked: saved.checked || false,
+        data: saved.data || '',
+        observacao: saved.observacao || ''
+      };
+    });
+  });
+  
+  // Coletar dados das tarefas diárias
+  const today = new Date().toISOString().split('T')[0];
+  const dailyKey = `checklist-${today}`;
+  const dailyState = JSON.parse(localStorage.getItem(dailyKey) || '{}');
+  allData.dailyTasks = dailyState;
+  
+  return allData;
+}
+
+function collectPhaseData(faseIndex) {
+  const fase = conteudosFases[faseIndex];
+  const phaseData = {
+    timestamp: new Date().toISOString(),
+    faseNumero: fase.numero,
+    faseTitulo: fase.titulo,
+    conteudos: {}
+  };
+  
+  fase.conteudos.forEach(item => {
+    const storageKey = `conteudo-${item.id}`;
+    const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    phaseData.conteudos[item.id] = {
+      titulo: item.titulo,
+      checked: saved.checked || false,
+      data: saved.data || '',
+      observacao: saved.observacao || ''
+    };
+  });
+  
+  return phaseData;
+}
+
+function showSuccessMessage(message = 'Dados salvos com sucesso!') {
+  const successMsg = document.getElementById('successMessage');
+  const successText = document.getElementById('successText');
+  successText.textContent = message;
+  successMsg.classList.add('show');
+  
+  setTimeout(() => {
+    successMsg.classList.remove('show');
+  }, 3000);
+}
+
+async function submitAllData() {
+  const button = event.target.closest('.submit-button');
+  
+  if (button.classList.contains('loading')) return;
+  
+  button.classList.add('loading');
+  button.textContent = '⏳ Sincronizando...';
+  
+  try {
+    const allData = collectAllData();
+    
+    // Salvar no Firebase
+    const result = await saveToFirebase(allData);
+
+    button.classList.remove('loading');
+    
+    if (result.success) {
+      button.textContent = '✓ Sincronizado!';
+      showSuccessMessage(result.message);
+    } else {
+      button.textContent = '⚠️ Salvo (offline)';
+      showSuccessMessage(result.message);
+    }
+    
+    setTimeout(() => {
+      button.textContent = '<i class="ti ti-send" aria-hidden="true"></i> Enviar Progresso';
+    }, 2000);
+    
+  } catch (error) {
+    console.error('Erro ao enviar dados:', error);
+    button.classList.remove('loading');
+    button.textContent = '✗ Erro ao enviar';
+    showSuccessMessage('Erro ao sincronizar. Tente novamente.');
+    
+    setTimeout(() => {
+      button.textContent = '<i class="ti ti-send" aria-hidden="true"></i> Enviar Progresso';
+    }, 2000);
+  }
+}
+
+async function submitPhaseData(faseIndex) {
+  const button = event.target.closest('.submit-button-inline');
+  
+  if (button.classList.contains('loading')) return;
+  
+  button.classList.add('loading');
+  const originalText = button.innerHTML;
+  button.innerHTML = '⏳ Salvando...';
+  
+  try {
+    const phaseData = collectPhaseData(faseIndex);
+    
+    // Salvar no Firebase
+    const result = await saveToFirebase(phaseData);
+
+    button.classList.remove('loading');
+    
+    if (result.success) {
+      button.innerHTML = '✓ Salvo!';
+      showSuccessMessage(`Fase ${phaseData.faseNumero} salva com sucesso!`);
+    } else {
+      button.innerHTML = '⚠️ Salvo (offline)';
+      showSuccessMessage(result.message);
+    }
+    
+    setTimeout(() => {
+      button.innerHTML = originalText;
+    }, 2000);
+    
+  } catch (error) {
+    console.error('Erro ao salvar:', error);
+    button.classList.remove('loading');
+    button.innerHTML = '✗ Erro';
+    showSuccessMessage('Erro ao salvar. Tente novamente.');
+    
+    setTimeout(() => {
+      button.innerHTML = originalText;
+    }, 2000);
+  }
 }
 
 // Initialize on page load
+initializeTheme();
 initializeConteudos();
 initializeDailyChecklist();
+updateDynamicValues();
 </script>
+
+<!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebaselibs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebaselibs/9.23.0/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+
 </body>
 </html>
